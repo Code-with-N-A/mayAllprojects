@@ -1,397 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voting Booth</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            font-family: sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Professional Portfolio</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+<style>
 
-        body {
-            background-color: rgb(251, 253, 254);
-
-        }
-
-        .parti {
-            margin: 0px auto;
-            width: 100%;
-            display: block;
+* { box-sizing: border-box; margin:0; padding:0; }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f4f7f8;
+    color: #333;
+    line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
 
 
-        }
+header {
+    text-align: center;
+    padding: 60px 20px 30px;
+    background: linear-gradient(to right, #2980b9, #6dd5fa);
+    color: #fff;
+}
+header h1 {
+    font-size: 2.8em;
+    letter-spacing: 1px;
+}
+header p {
+    font-size: 1.1em;
+    margin-top: 10px;
+    color: #e0f7ff;
+}
 
-        .bjp {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            margin-bottom: 30px;
-            border-radius: 8px;
-
-        }
-
-        .inc {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            margin-bottom: 30px;
-            border-radius: 8px;
-
-        }
-
-        .nota {
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: flex;
-            border-radius: 8px;
-        }
-
-        .parti img {
-            width: 100px;
-            height: 70px;
-            object-fit: contain;
-            background: transparent;
-            box-shadow: none;
-            margin: 5px;
-        }
-
-        .parti h2 {
-            text-align: center;
-            justify-content: center;
-            margin-top: 20px;
-            height: 3vh;
-        }
-
-        .contenr {
-            max-width: 800px;
-            margin: 0 auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-top: 70px;
-            padding: 10px;
-        }
-
-        .contenr h1 {
-            font-size: 28px;
-            letter-spacing: 2px;
-            margin-bottom: 20px;
-            justify-content: center;
-            text-align: center;
-            color: #000000;
-            padding: 10px;
-            border-radius: 10px;
-            background-color: rgb(255, 255, 255);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 30px;
-        }
-
-        .man {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            display: flex;
-            gap: 25px;
-            border-radius: 10px;
-
-        }
-
-        .inpo {
-            width: 100%;
-            padding: 20px;
-            background-color: rgb(255, 255, 255);
-            margin-top: 10px;
+/* Search Bar */
+.search-container {
+    max-width: 600px;
+    margin: -30px auto 50px;
+    position: relative;
+}
+input[type="text"] {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 16px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+input[type="text"]:focus {
+    outline: none;
+    border-color: #2980b9;
+    box-shadow: 0 4px 15px rgba(41,128,185,0.3);
+}
+.suggestions {
+    position: absolute;
+    top: 60px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: 1000;
+}
+.suggestion-item {
+    padding: 12px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: background 0.2s;
+}
+.suggestion-item:hover {
+    background: #f0f4f8;
+}
 
 
-        }
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    max-width: 1200px;
+    margin: 0 auto 60px;
+    padding: 0 20px;
+}
+.project-card {
+    background: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+}
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+.project-card h2 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+.project-card p {
+    font-size: 1em;
+    line-height: 1.6;
+    color: #555;
+}
+.project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #2980b9;
+    font-weight: 500;
+    margin-top: 15px;
+    transition: color 0.2s;
+}
+.project-link i { font-size: 0.9em; }
+.project-link:hover { color: #1c5980; }
 
-        .inpo h2 {
-            font-size: 24px;
-            margin-bottom: 50px;
-            color: #000000;
-            padding: 10px;
+/* Highlight */
+.highlight {
+    background: #fffa90;
+    transition: background 0.3s;
+}
 
-        }
-
-        .redow {
-            display: flex;
-            margin-bottom: 10px;
-
-        }
-
-
-        input {
-            width: 90%;
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1.4px solid gainsboro;
-            border-radius: 5px;
-            font-size: 20px;
-
-
-        }
-
-        .inpo button {
-            padding: 10px;
-            font-size: 20px;
-            border-radius: 5px;
-            background-color: rgb(70, 70, 244);
-            color: #fff;
-            border: none;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-        }
-
-        .inpo p {
-            font-size: 15px;
-            margin-top: 20px;
-        }
-
-        .inpo p a {
-            color: rgb(71, 116, 254);
-            font-size: 18px;
-        }
-
-        /* ✅ Mobile devices (max-width: 600px) */
-        @media (max-width: 600px) {
-            body {
-                max-width: 1000px;
-                position: relative;
-            }
-
-            .contenr {
-
-                margin: 20px;
-            }
-
-            .parti {
-                display: block;
-                text-align: left;
-                margin-top: 10px;
-                width: 99%;
-
-            }
-
-            .parti img {
-                width: 50px;
-                height: 60px;
-            }
-
-            .bjp {
-
-                display: flex;
-                border: 1.5px solid rgb(227, 226, 226);
-            }
-
-            .bjp img {
-                width: 80px;
-                height: 60px;
-            }
-
-            .inc {
-
-                display: flex;
-                border: 1.5px solid rgb(227, 226, 226);
-            }
-
-            .inc img {
-                width: 80px;
-                height: 60px;
-            }
-
-            .nota {
-
-                display: flex;
-                border: 1.5px solid rgb(227, 226, 226);
-            }
-
-            .nota img {
-                width: 80px;
-                height: 60px;
-            }
-
-            .man {
-                flex-direction: column;
-                gap: 10px;
-            }
-
-            .inpo {
-                padding: 10px;
-            }
-
-            .inpo h2 {
-                font-size: 10px;
-            }
-
-            input {
-                font-size: 16px;
-                width: 90%;
-            }
-
-            .inpo button {
-                font-size: 16px;
-                padding: 8px;
-                max-width: 90%;
-                padding: 10px;
-            }
-        }
-
-        /* ✅ Tablet devices (max-width: 900px) */
-        @media (max-width: 900px) {
-            .parti {
-                gap: 60px;
-            }
-
-            .man {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .im img {
-                width: 100%;
-                max-width: 400px;
-                margin: 0 auto;
-            }
-        }
-
-        /* 1 secand ke liye kishi ka bhi bagrunde color cheng karne ke liye */
-        @keyframes flash {
-            0% {
-                background-color: rgb(247, 227, 10);
-            }
-
-            100% {
-                background-color: transparent;
-            }
-        }
-
-        .flash-bg {
-            animation: flash 5s ease;
-        }
+/* Footer */
+footer {
+    background: #2f3640;
+    color: #fff;
+    padding: 60px 20px 20px;
+}
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 30px;
+}
+.footer-section h3 {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+}
+.footer-section p, .footer-section a {
+    color: #ccc;
+    font-size: 0.95em;
+    line-height: 1.5;
+}
+.footer-section a:hover { color: #fff; }
+.social-icons {
+    margin-top: 10px;
+}
+.social-icons a {
+    color: #ccc;
+    font-size: 1.2em;
+    margin-right: 12px;
+    transition: color 0.3s;
+}
+.social-icons a:hover { color: #2980b9; }
 
 
-        /* mot importent target in btn and Enebal and disebald to js */
-        .inpo button:disabled {
-            background-color: rgb(190, 190, 254);
-            cursor: not-allowed;
-        }
-    </style>
+@media(max-width:1024px){
+    header h1 { font-size: 2.4em; }
+}
+@media(max-width:768px){
+    header h1 { font-size: 2em; }
+    .projects-grid { gap: 20px; }
+    .project-card { padding: 20px; }
+}
+@media(max-width:480px){
+    header h1 { font-size: 1.8em; }
+    input[type="text"] { padding: 12px 15px; }
+    .project-card { padding: 15px; }
+   
+}
+</style>
 </head>
-
 <body>
-    <div class="contenr">
-        <h1> Voting Booth</h1>
-        <div class="man">
-            <div class="parti">
-                <div class="bjp">
-                    <img src="https://logos-world.net/wp-content/uploads/2022/06/BJP-Logo.png" alt="BJP">
-                    <h2 class="BJP">0</h2>
-                </div>
-                <div class="inc">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/INC_Logo.png/250px-INC_Logo.png"
-                        alt="INC">
-                    <h2 class="INC">0</h2>
-                </div>
-                <div class="nota">
-                    <img src="https://m.media-amazon.com/images/I/51YCqhDhqIS.jpg" alt="NOTA">
-                    <h2 class="NOTA">0</h2>
-                </div>
-            </div>
-            <div class="inpo">
-                <h2 style="color:rgb(0, 0, 0); text-align:center; font-size:20px; font-weight:bold;">
-                    Vote for the Best Candidate
-                </h2>
-                <div class="redow">
-                    <label for="">BJP</label>
-                    <input type="radio" name="Vote" id="BJP">
-                    <label for="">INC</label>
-                    <input type="radio" name="Vote" id="INC">
-                    <label for="">AAP</label>
-                    <input type="radio" name="Vote" id="NOTA">
-                </div>
-                <input type="text" id="id" placeholder="MPZ1234567" maxlength="10">
-                <button disabled>Submit</button>
-                <p>Voting information and services: <a href="https://eci.gov.in" target="_blank">Election Commission of
-                        India</a></p>
 
+<header>
+    <h1>My Professional Portfolio</h1>
+    <p>Showcasing my projects with responsive design & modern UI</p>
+</header>
+
+<div class="search-container">
+    <input type="text" id="searchBar" placeholder="Search projects or links...">
+    <div id="suggestions" class="suggestions"></div>
+</div>
+
+<div class="projects-grid">
+    <div class="project-card" id="project1">
+        <h2>Convert Text To Binary</h2>
+        <p>Easily convert any text into its binary representation with this online tool.</p>
+        <a class="project-link" href="binary.html" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Project</a>
+    </div>
+    <div class="project-card" id="project2">
+        <h2>Voting Booth</h2>
+        <p>Voting Booth: A secure and user-friendly web app for online elections, demonstrating web development and authentication skills.</p>
+        <a class="project-link" href="voting.html" target="_blank"><i class="fas fa-external-link-alt"></i> Visit Project</a>
+    </div>
+   
+</div>
+
+
+<footer>
+    <div class="footer-container">
+        <div class="footer-section">
+            <h3>About Me</h3>
+            <p>I am a web developer passionate about building responsive and professional web applications. Skilled in HTML, CSS, JavaScript, and modern frameworks.</p>
+        </div>
+        <div class="footer-section">
+            <h3>Quick Links</h3>
+            <p><a href="voting.html">Voting Booth</a></p>
+            <p><a href="binary.html">Convert Text To Binary</a></p>
+        </div>
+        <div class="footer-section">
+            <h3>Contact</h3>
+            <p>Email: niteshamule74@gmail.com</p>
+            <p>Phone: +91 9303546247</p>
+            <div class="social-icons">
+                <a href="https://www.linkedin.com/in/nitesh-amule-60223b34b?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/Code-with-N-A/mayAllprojects"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
             </div>
         </div>
+        <div class="footer-section">
+            <h3>Address</h3>
+            <p>Mp bhopal balghat ktangi 481449</p>
+        </div>
     </div>
-</body>
+    <p style="text-align:center; margin-top:20px; color:#aaa;">&copy; 2025 Nitesh Amule. All rights reserved.</p>
+</footer>
+
 <script>
-    let bjp = document.querySelector("#BJP");
-    let inc = document.querySelector("#INC");
-    let nota = document.querySelector("#NOTA");
-    let bjp1 = document.querySelector(".BJP");
-    let inc2 = document.querySelector(".INC");
-    let nota3 = document.querySelector(".NOTA");
-    let votinp = document.querySelector("#id");
-    let submite = document.querySelector("button");
-    let voterIDs = [
-        "MPZ1234567", "ABC7654321", "XYZ0001234", "BPL9876543", "DEL1239876",
-        "MUM4561237", "KOL7653219", "CHE3216548", "HYD8529631", "PUN9638524",
-        "RAJ7412589", "UPR1593574", "BIH2589637", "GUJ3571596", "KER6549871",
-        "TAM8521479", "ASS9517536", "ORI4568527", "JNK1478523", "HAR3692587"
-    ];
+const searchBar = document.getElementById('searchBar');
+const suggestionsBox = document.getElementById('suggestions');
 
-    let votedIDs = [];
-    console.log("allredi voted:-", votedIDs);
+const items = [
+    { type: 'text', name: 'Convert Text To Binary', id: 'project1' },
+    { type: 'text', name: 'Voting Booth', id: 'project2' },
+    { type: 'link', name: 'Convert Text To Binary', url: 'binary.html' },
+    { type: 'link', name: 'Voting Booth', url: 'voting.html' },
+   
+];
 
-    function checkEligibility() {
-        let inp = votinp.value.trim().toUpperCase();
-        let anyRadioChecked = document.querySelector('input[type="radio"]:checked');
-        if (voterIDs.includes(inp) && !votedIDs.includes(inp) && anyRadioChecked) {
-            submite.disabled = false;
-        } else {
-            submite.disabled = true;
-        }
-    }
+searchBar.addEventListener('input', () => {
+    const query = searchBar.value.toLowerCase();
+    suggestionsBox.innerHTML = '';
+    if(query === '') return;
 
-    document.querySelectorAll('input[type="radio"]').forEach(radio => {
-        radio.addEventListener("change", checkEligibility)
+    const filtered = items.filter(item => item.name.toLowerCase().includes(query));
+    filtered.forEach(item => {
+        const div = document.createElement('div');
+        div.className = 'suggestion-item';
+        div.innerHTML = item.type === 'link' ? `<i class="fas fa-link"></i> ${item.name}` : item.name;
+        div.addEventListener('click', () => {
+            if(item.type === 'text'){
+                const el = document.getElementById(item.id);
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                el.classList.add('highlight');
+                setTimeout(() => el.classList.remove('highlight'), 3000);
+            } else if(item.type === 'link'){
+                window.open(item.url,'_blank');
+            }
+            suggestionsBox.innerHTML = '';
+            searchBar.value = '';
+        });
+        suggestionsBox.appendChild(div);
     });
+});
 
-    votinp.addEventListener("input", checkEligibility);
-
-    submite.addEventListener("click", () => {
-        let inp = votinp.value.trim().toUpperCase();
-        // vose spiker star
-        function giveVote(party) {
-            let message = "आपका वोट सफलतापूर्वक दर्ज हो गया है। धन्यवाद!";
-            let speech = new SpeechSynthesisUtterance(message);
-            speech.lang = "hi-IN"; // Hindi voice
-            window.speechSynthesis.speak(speech);
-        }
-
-        if (bjp.checked) {
-            bjp1.textContent = Number(bjp1.textContent || 0) + 1;
-            bjp1.parentElement.classList.add('flash-bg');
-            giveVote();
-
-        }
-        else if (inc.checked) {
-            inc2.textContent = Number(inc2.textContent || 0) + 1;
-            inc2.parentElement.classList.add('flash-bg');
-            giveVote();
-
-        }
-        else if (nota.checked) {
-            nota3.textContent = Number(nota3.textContent || 0) + 1;
-            nota3.parentElement.classList.add('flash-bg');
-            giveVote();
-
-        }
-        votedIDs.push(inp);
-        console.log("Already voted:", votedIDs);
-
-        document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
-        submite.disabled = true;
-        votinp.value = ""
-
-
-    })
-
+document.addEventListener('click', e => {
+    if(!searchBar.contains(e.target) && !suggestionsBox.contains(e.target)){
+        suggestionsBox.innerHTML = '';
+    }
+});
 </script>
 
+</body>
 </html>

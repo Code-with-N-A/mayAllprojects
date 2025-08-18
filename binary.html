@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text TO Binary</title>
+    <link rel="stylesheet" href="https://primeprojects.netlify.app/">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        .contenar {
+            margin: 0px auto;
+            max-width: 800px;
+            background-color: #fff;
+            justify-content: center;
+            text-align: center;
+            margin-top: 50px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px 4px rgba(224, 224, 224, 0.4);
+
+
+        }
+
+        .heding {
+            border-radius: 5px;
+            color: #000000;
+            padding: 15px;
+
+        }
+
+        .box {
+            padding: 10px;
+            margin-top: 1;
+            border: 0.5px solid rgb(186, 185, 185);
+            display: flex;
+
+
+        }
+
+        .box textarea {
+            padding: 20px;
+            border: 0.2px solid rgb(187, 187, 187);
+            border-radius: 5px;
+            width: 80%;
+            margin: 0px auto;
+            font-size: 20px;
+            scrollbar-width: none;
+
+        }
+
+        .box button {
+            padding: 10px;
+            color: #fff;
+            font-size: 30px;
+            font-weight: bolder;
+            background-color: rgb(110, 110, 253);
+            width: 95%;
+            justify-content: center;
+            margin: 0px auto;
+            border: none;
+            margin-top: 30px;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .result {
+            position: relative;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 10px;
+            font-size: 30px;
+            color: black;
+            height: 20vh;
+            overflow-y: scroll;
+            scroll-behavior: smooth;
+            border: 0.5px solid gainsboro;
+            scrollbar-width: none;
+        }
+
+        .result p {
+            text-align: left;
+        }
+
+        .result #copyBtn {
+            position: sticky;
+            top: 0;
+            
+            right: 0;
+           
+            margin-left: auto;
+            display: block;
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .contenar {
+                max-width: 95%;
+                margin-top: 90px;
+                padding: 15px;
+            }
+
+            .box {
+                flex-direction: column;
+            }
+
+            .box textarea {
+                width: 100%;
+                font-size: 18px;
+                padding: 15px;
+            }
+
+            .box button {
+                font-size: 22px;
+                padding: 8px;
+                width: 100%;
+            }
+
+            .result {
+                font-size: 22px;
+                height: 15vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contenar {
+                max-width: 90%;
+                margin-top: 20px;
+                padding: 10px;
+                border-radius: 6px;
+            }
+
+            .heding h1 {
+                font-size: 20px;
+            }
+
+            .box {
+                border-radius: 8px;
+            }
+
+            .box textarea {
+                font-size: 16px;
+                padding: 15px;
+                width: 90%;
+                margin-top: 30px;
+            }
+
+            .box button {
+                font-size: 18px;
+                padding: 8px;
+            }
+
+            .result {
+                font-size: 18px;
+                height: 30vh;
+            }
+
+            #copyBtn {
+                font-size: 14px;
+                padding: 4px 8px;
+            }
+        }
+        p{
+            margin-top: 10px;
+        }
+        a{
+            color: #007bff;
+        }
+
+
+
+        .prtionl button:disabled {
+            background-color: rgb(190, 190, 254);
+            cursor: not-allowed;
+        }
+
+        #copyBtn.copied {
+            background-color: #fff;
+            color: #fff !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenar">
+        <div class="heding">
+            <h1>Convert Text To Binary</h1>
+        </div>
+        <div class="box">
+            <div class="prtionl">
+                <textarea name="text" id="textToBinary" placeholder="Enter your Text"></textarea>
+                <button id="btnText" disabled>submit</button>
+            </div>
+            <div class="prtionl">
+                <textarea name="text" id="binaryToText" placeholder="Enter Number "></textarea>
+                <button id="btnBinary" disabled>submit</button>
+            </div>
+
+        </div>
+        <div class="result">
+            <button id="copyBtn">Copy</button>
+            <p id="output"></p>
+        </div>
+        <p>Here you can view the Unicode values of characters. <a href="https://primeprojects.netlify.app/unicode_character">Learn more</a></p>
+    </div>
+   
+</body>
+<script>
+    let textArea = document.querySelector("#textToBinary");
+    let binaryArea = document.querySelector("#binaryToText");
+    let btnText = document.querySelector("#btnText");
+    let btnBinary = document.querySelector("#btnBinary");
+    let result = document.querySelector("#output");
+    let copyBtn = document.querySelector("#copyBtn");
+
+
+    textArea.addEventListener("input", () => {
+        btnText.disabled = textArea.value.trim() === "";
+    });
+    binaryArea.addEventListener("input", () => {
+        btnBinary.disabled = binaryArea.value.trim() === "";
+    });
+
+    // text to Binary
+    function strtoB(str) {
+        return str.split("").map(char => char.charCodeAt(0).toString(2).padStart(8, "0")).join(" ");
+    }
+    function BtoText(bin) {
+        return bin.split(" ").map(b => String.fromCharCode(parseInt(b, 2))).join("");
+    }
+
+    btnText.addEventListener("click", () => {
+        let text = textArea.value.trim();
+        result.textContent = strtoB(text)
+        textArea.value = "";
+        btnText.disabled = true;
+
+    });
+
+    btnBinary.addEventListener("click", () => {
+        let bin = binaryArea.value.trim();
+        result.textContent = BtoText(bin);
+        binaryArea.value = "";
+        btnBinary.disabled = true;
+       
+    });
+
+
+
+
+    function copyResult() {
+        let text = result.textContent;
+        if (text.trim() !== "") {
+            // Try modern clipboard API first
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text)
+                    .then(() => showCopied())
+                    .catch(() => fallbackCopy(text));
+            } else {
+                // Fallback for older/mobile browsers
+                fallbackCopy(text);
+            }
+        }
+    }
+
+    //  Fallback function (works on phone also)
+    function fallbackCopy(text) {
+        let textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";  // avoid scrolling to bottom on iOS
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+
+        try {
+            let successful = document.execCommand("copy");
+            if (successful) {
+                showCopied();
+            } else {
+                console.error("Fallback: Copy command failed");
+            }
+        } catch (err) {
+            console.error("Fallback error: " + err);
+        }
+
+        document.body.removeChild(textarea);
+    }
+
+    function showCopied() {
+        copyBtn.classList.add("copied");
+        result.textContent = "";
+
+        setTimeout(() => {
+            copyBtn.classList.remove("copied");
+        }, 4000);
+    }
+
+    // Event listener
+    copyBtn.addEventListener("click", copyResult);
+
+</script>
+
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+        }
+
+        body {
+            background-color: rgb(251, 253, 254);
+
+        }
+
+        .parti {
+            margin: 0px auto;
+            width: 100%;
+            display: block;
+
+
+        }
+
+        .bjp {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 8px;
+
+        }
+
+        .inc {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            margin-bottom: 30px;
+            border-radius: 8px;
+
+        }
+
+        .nota {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            border-radius: 8px;
+        }
+
+        .parti img {
+            width: 100px;
+            height: 70px;
+            object-fit: contain;
+            background: transparent;
+            box-shadow: none;
+            margin: 5px;
+        }
+
+        .parti h2 {
+            text-align: center;
+            justify-content: center;
+            margin-top: 20px;
+            height: 3vh;
+        }
+
+        .contenr {
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 70px;
+            padding: 10px;
+        }
+
+        .contenr h1 {
+            font-size: 28px;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            justify-content: center;
+            text-align: center;
+            color: #000000;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: rgb(255, 255, 255);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .man {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            display: flex;
+            gap: 25px;
+            border-radius: 10px;
+
+        }
+
+        .inpo {
+            width: 100%;
+            padding: 20px;
+            background-color: rgb(255, 255, 255);
+            margin-top: 10px;
+
+
+        }
+
+        .inpo h2 {
+            font-size: 24px;
+            margin-bottom: 50px;
+            color: #000000;
+            padding: 10px;
+
+        }
+
+        .redow {
+            display: flex;
+            margin-bottom: 10px;
+
+        }
+
+
+        input {
+            width: 90%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1.4px solid gainsboro;
+            border-radius: 5px;
+            font-size: 20px;
+
+
+        }
+
+        .inpo button {
+            padding: 10px;
+            font-size: 20px;
+            border-radius: 5px;
+            background-color: rgb(70, 70, 244);
+            color: #fff;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .inpo p {
+            font-size: 15px;
+            margin-top: 20px;
+        }
+
+        .inpo p a {
+            color: rgb(71, 116, 254);
+            font-size: 18px;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                max-width: 1000px;
+                position: relative;
+            }
+
+            .contenr {
+
+                margin: 20px;
+            }
+
+            .parti {
+                display: block;
+                text-align: left;
+                margin-top: 10px;
+                width: 99%;
+
+            }
+
+            .parti img {
+                width: 50px;
+                height: 60px;
+            }
+
+            .bjp {
+
+                display: flex;
+                border: 1.5px solid rgb(227, 226, 226);
+            }
+
+            .bjp img {
+                width: 80px;
+                height: 60px;
+            }
+
+            .inc {
+
+                display: flex;
+                border: 1.5px solid rgb(227, 226, 226);
+            }
+
+            .inc img {
+                width: 80px;
+                height: 60px;
+            }
+
+            .nota {
+
+                display: flex;
+                border: 1.5px solid rgb(227, 226, 226);
+            }
+
+            .nota img {
+                width: 80px;
+                height: 60px;
+            }
+
+            .man {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .inpo {
+                padding: 10px;
+            }
+
+            .inpo h2 {
+                font-size: 10px;
+            }
+
+            input {
+                font-size: 16px;
+                width: 90%;
+            }
+
+            .inpo button {
+                font-size: 16px;
+                padding: 8px;
+                max-width: 90%;
+                padding: 10px;
+            }
+        }
+
+        /* ✅ Tablet devices (max-width: 900px) */
+        @media (max-width: 900px) {
+            .parti {
+                gap: 60px;
+            }
+
+            .man {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .im img {
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @keyframes flash {
+            0% {
+                background-color: rgb(247, 227, 10);
+            }
+
+            100% {
+                background-color: transparent;
+            }
+        }
+
+        .flash-bg {
+            animation: flash 2s ease;
+        }
+
+
+        /* mot importent target in btn and Enebal and disebald to js */
+        .inpo button:disabled {
+            background-color: rgb(190, 190, 254);
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenr">
+        <h1>2026 Woting Boothe</h1>
+        <div class="man">
+            <div class="parti">
+                <div class="bjp">
+                    <img src="https://logos-world.net/wp-content/uploads/2022/06/BJP-Logo.png" alt="BJP">
+                    <h2 class="BJP">0</h2>
+                </div>
+                <div class="inc">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/INC_Logo.png/250px-INC_Logo.png"
+                        alt="INC">
+                    <h2 class="INC">0</h2>
+                </div>
+                <div class="nota">
+                    <img src="https://m.media-amazon.com/images/I/51YCqhDhqIS.jpg" alt="NOTA">
+                    <h2 class="NOTA">0</h2>
+                </div>
+            </div>
+            <div class="inpo">
+                <h2>Vote for the best candidate</h2>
+                <div class="redow">
+                    <label for="">BJP</label>
+                    <input type="radio" name="Vote" id="BJP">
+                    <label for="">INC</label>
+                    <input type="radio" name="Vote" id="INC">
+                    <label for="">AAP</label>
+                    <input type="radio" name="Vote" id="NOTA">
+                </div>
+                <input type="text" id="id" placeholder="MPZ1234567" maxlength="10">
+                <button disabled>Submit</button>
+                <p>Commplan of Boothe? <a
+                        href="https://www.shutterstock.com/search/vote-india?dd_referrer=https%3A%2F%2Fwww.google.com%2F">Indan
+                        Boothe</a></p>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let bjp = document.querySelector("#BJP");
+    let inc = document.querySelector("#INC");
+    let nota = document.querySelector("#NOTA");
+    let bjp1 = document.querySelector(".BJP");
+    let inc2 = document.querySelector(".INC");
+    let nota3 = document.querySelector(".NOTA");
+    let votinp = document.querySelector("#id");
+    let submite = document.querySelector("button");
+    let voterIDs = [
+        "MPZ1234567", "ABC7654321", "XYZ0001234", "BPL9876543", "DEL1239876",
+        "MUM4561237", "KOL7653219", "CHE3216548", "HYD8529631", "PUN9638524",
+        "RAJ7412589", "UPR1593574", "BIH2589637", "GUJ3571596", "KER6549871",
+        "TAM8521479", "ASS9517536", "ORI4568527", "JNK1478523", "HAR3692587"
+    ];
+
+    let votedIDs = [];
+    console.log("allredi voted:-", votedIDs);
+
+    function checkEligibility() {
+        let inp = votinp.value.trim().toUpperCase();
+        let anyRadioChecked = document.querySelector('input[type="radio"]:checked');
+        if (voterIDs.includes(inp) && !votedIDs.includes(inp) && anyRadioChecked) {
+            submite.disabled = false;
+        } else {
+            submite.disabled = true;
+        }
+    }
+
+    document.querySelectorAll('input[type="radio"]').forEach(radio => {
+        radio.addEventListener("change", checkEligibility)
+    });
+
+    votinp.addEventListener("input", checkEligibility);
+
+    submite.addEventListener("click", () => {
+        let inp = votinp.value.trim().toUpperCase();
+
+        if (bjp.checked) {
+            bjp1.textContent = Number(bjp1.textContent || 0) + 1;
+            bjp1.parentElement.classList.add('flash-bg');
+        }
+        else if (inc.checked) {
+            inc2.textContent = Number(inc2.textContent || 0) + 1;
+            inc2.parentElement.classList.add('flash-bg');
+
+        }
+        else if (nota.checked) {
+            nota3.textContent = Number(nota3.textContent || 0) + 1;
+            nota3.parentElement.classList.add('flash-bg');
+
+        }
+        votedIDs.push(inp);
+        console.log("Already voted:", votedIDs);
+
+        document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+        submite.disabled = true;
+        votinp.value = ""
+
+
+    })
+
+</script>
+
+</html>
