@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Counter</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: sans-serif;
+        }
+
+        .conteanr {
+            max-width: 800px;
+            margin: 0px auto;
+            box-shadow: 0px 4px 8px rgb(193, 192, 192);
+            margin-top: 40px;
+            padding: 20px;
+        }
+
+        .conteanr h1 {
+            text-align: center;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .conteanr .lin {
+            border: 3px solid rgb(0, 0, 0);
+            justify-content: center;
+            text-align: center;
+            margin: 0px auto;
+            width: 70%;
+        }
+
+        .box {
+            display: flex;
+            width: 90%;
+            box-shadow: 0px 4px 4px 4px rgb(222, 220, 220);
+            padding: 25px;
+            margin-top: 30px;
+        }
+
+        .box .imgbox {
+            width: 50%;
+
+        }
+
+        .box .imgbox img {
+            max-width: 300px;
+        }
+
+        .box .inp {
+            width: 50%;
+            flex-direction: column;
+            padding: 20px;
+
+
+        }
+
+        #grad {
+            padding: 15px;
+            padding-left: 0px;
+            font-size: 25px;
+            width: 100%;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            margin: 0px auto;
+
+
+        }
+
+        .grade {
+            color: green;
+
+        }
+
+        .box .inp #uouser {
+            padding: 20px;
+            border: 0.5px solid gainsboro;
+            display: block;
+            width: 80%;
+            margin-top: 10px;
+            font-size: 20px;
+            border-radius: 5px;
+        }
+
+        .chbox {
+            display: flex;
+            margin-top: 10px;
+            gap: 20px;
+        }
+
+        .chbox #capchar {
+            border: 0.5px solid gainsboro;
+            display: block;
+            width: 45%;
+            margin-top: 10px;
+            font-size: 20px;
+            border-radius: 5px;
+            padding: 10px;
+        }
+
+        .chbox .cap {
+            width: 30%;
+            background: #f3f3f3;
+            padding: 10px;
+
+
+
+        }
+
+        .chbox .cap h4 {
+            font-size: 25px;
+            font-weight: bold;
+            font-style: italic;
+            letter-spacing: 5px;
+            color: #222;
+            display: inline-block;
+            transform: rotate(-3deg);
+            text-decoration: line-through;
+            user-select: none;
+        }
+
+
+        .box .inp button {
+            padding: 10px;
+            width: 93%;
+            margin-top: 30px;
+            font-size: 25px;
+            font-weight: bold;
+            background-color: rgb(1, 1, 117);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            justify-content: center;
+            text-align: center;
+
+        }
+
+        /* Tablet view (max-width: 768px) */
+        @media (max-width: 900px) {
+            .conteanr {
+                margin-top: 100px;
+            }
+
+            .box {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .box .imgbox,
+            .box .inp {
+                width: 100%;
+
+            }
+
+            .box .imgbox img {
+                max-width: 100%;
+                height: auto;
+            }
+
+
+            .chbox #capchar,
+            .box .inp button {
+                width: 100%;
+            }
+
+            #uouser {
+                padding: 20px;
+                width: 93%;
+                border: 0.5px solid rgb(110, 109, 109);
+                border-radius: 6px;
+            }
+
+            .chbox {
+                gap: 10px;
+            }
+
+            .chbox .cap {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 1280px) {
+            .conteanr {
+                margin-top: 100px;
+            }
+
+            .box {
+                align-items: center;
+            }
+
+            .box .imgbox,
+            .box .inp {
+                width: 100%;
+
+            }
+
+            .box .imgbox img {
+                max-width: 100%;
+                height: auto;
+            }
+
+
+            .chbox #capchar,
+            .box .inp button {
+                width: 100%;
+            }
+
+            #uouser {
+                padding: 20px;
+                width: 93%;
+                border: 0.5px solid rgb(110, 109, 109);
+                border-radius: 6px;
+            }
+
+            .chbox {
+                gap: 10px;
+            }
+
+            .chbox .cap {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        /* Mobile view (max-width: 480px) */
+        @media (max-width: 480px) {
+            .conteanr {
+                margin-top: 20px;
+                padding: 15px;
+                height: 100vh;
+                position: fixed;
+            }
+
+            .conteanr h1 {
+                font-size: 25px;
+                padding: 10px;
+            }
+
+            .conteanr .lin {
+                width: 90%;
+            }
+
+
+            .box {
+                border-radius: 5px;
+                padding: 15px;
+            }
+
+            .box .inp #uouser {
+                font-size: 16px;
+                padding: 12px;
+                width: 90%;
+
+
+
+            }
+
+            .chbox {
+                display: flex;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .chbox #capchar {
+                width: 50%;
+            }
+
+            .conteanr .inp .chbox .cap {
+                font-size: 18px;
+                letter-spacing: 3px;
+                width: 30%;
+
+
+            }
+
+            .box .inp button {
+                font-size: 18px;
+            }
+        }
+
+
+        .inp button:disabled {
+            background-color: rgb(190, 190, 254);
+            cursor: not-allowed;
+        }
+
+        .fel {
+            color: red;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="conteanr">
+        <h1>Studants Number Of Grad </h1>
+        <div class="lin"></div>
+        <div class="box">
+            <div class="imgbox">
+                <img src="https://freepngimg.com/save/166435-college-student-png-file-hd/800x420" alt="img">
+                <p>Students can calculate their percentage and know their grade based on the marks they scored.</p>
+
+            </div>
+            <div class="inp">
+                <label id="grad" class="grade"></label>
+                <input type="number" name="" id="uouser" placeholder="0% to 100%">
+                <div class="chbox">
+                    <input type="text" id="capchar" maxlength="5" placeholder="Enter Capture">
+                    <div class="cap">
+                        <h4 id="capcharso"></h4>
+                    </div>
+                </div>
+                <button id="btn" disabled type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let massag = document.querySelector('#grad');
+    let user = document.querySelector("#uouser");
+    let capchar = document.querySelector("#capchar");
+    let charsetso = document.querySelector("#capcharso");
+    let btn = document.querySelector("#btn");
+    let currentCaptcha = ""; // store generated captcha
+    const CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnpqrstuvwxyz23456789";
+
+    function generateCaptcha(len = 5) {
+        let out = "";
+        for (let i = 0; i < len; i++) {
+            const idx = Math.floor(Math.random() * CHARS.length);
+            out += CHARS[idx];
+        }
+        return out;
+        console.log(out)
+    }
+
+
+    user.addEventListener('click', () => {
+        currentCaptcha = generateCaptcha(5);
+        charsetso.textContent = currentCaptcha;
+        capchar.value = "";
+
+    });
+
+
+    capchar.addEventListener('input', () => {
+        if (capchar.value.trim().toLowerCase() === currentCaptcha.toLowerCase()) {
+            btn.disabled = false;
+        } else {
+            btn.disabled = true;
+        }
+    });
+
+    btn.addEventListener('click', () => {
+        let marks = Number(user.value);
+
+        if (marks > 100) {
+            massag.textContent = "Invalid Marks! Please enter between 0 to 100.";
+        } else if (marks >= 91) {
+            massag.textContent = `Marks: ${marks}% Grade: A+`;
+        } else if (marks >= 80) {
+            massag.textContent = `Marks: ${marks}% Grade: A`;
+        } else if (marks >= 70) {
+            massag.textContent = `Marks: ${marks}% Grade: B+`;
+        } else if (marks >= 60) {
+            massag.textContent = `Marks: ${marks}% Grade: B`;
+        } else if (marks >= 50) {
+            massag.textContent = `Marks: ${marks}% Grade: C`;
+        } else if (marks >= 40) {
+            massag.textContent = `Marks: ${marks}% Pass`;
+        } else {
+            massag.textContent = `Marks: ${marks}% Fail`;
+            massag.classList.add('fel');
+        }
+
+        // inputs clear
+        user.value = "";
+        capchar.value = "";
+        btn.disabled = true;
+    });
+
+
+</script>
+
+</html>
