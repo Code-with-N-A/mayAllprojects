@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SBI ATM</title>
+</head>
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: sans-serif;
+  }
+
+  .contenor {
+    max-width: 300px;
+    margin: 0px auto;
+    margin-top: 10px;
+    box-shadow: 0px 4px 4px 4px rgb(212, 211, 211);
+    padding: 30px;
+    justify-content: center;
+    text-align: center;
+    background-color: black;
+    border-radius: 5px;
+
+  }
+
+  .heding {
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+
+  }
+
+  .massage {
+    background-color: #6d84ec;
+    /* ATM screen dark green background */
+    color: #ffffff;
+    /* Neon green text */
+    height: 25vh;
+    text-align: left;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* Firefox me scrollbar hide */
+    -ms-overflow-style: none;
+    /* IE/Edge me scrollbar hide */
+    font-family: "Courier New", monospace;
+    /* Old ATM machine font style */
+    font-size: 14px;
+  }
+
+  .massage::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari me scrollbar hide */
+  }
+
+  marquee {
+
+    color: black;
+    background-color: rgb(255, 174, 0);
+    font-weight: bold;
+    margin-bottom: 10px;
+
+  }
+
+  .sp {
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    text-align: center;
+  }
+
+  span {
+    background-color: rgb(21, 1, 95);
+    font-weight: bold;
+    color: #ffffff;
+    border-radius: 5px;
+    padding: 6px;
+    font-size: 15px;
+    cursor: pointer;
+
+  }
+
+  span:hover {
+    background-color: white;
+    color: black;
+  }
+
+  p {
+    padding: 10px;
+    line-height: 1.5;
+    white-space: pre-line;
+
+
+  }
+
+  .soinpo {
+    padding: 10px;
+    line-height: 1.5;
+    white-space: pre-line;
+    margin: 0px auto;
+    background-color: rgb(244, 233, 20);
+    color: black;
+    text-align: center;
+    width: 100px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    justify-content: center;
+    align-content: center;
+    margin-left: 100px;
+    border: none;
+  }
+
+  .soinpo:hover {
+    background-color: rgb(255, 249, 125);
+
+  }
+
+  input {
+    margin-top: 0px auto;
+    font-size: 25px;
+    padding: 5px;
+    border: 0.5px solid black;
+    border: 5px;
+    text-align: center;
+    margin-left: 70px;
+    width: 150px;
+    display: block;
+  }
+
+  #btnWD {
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #000000;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+    padding: 10px;
+    margin-left: 100px;
+  }
+
+
+
+  .btn {
+    border: 5px solid rgb(0, 55, 5);
+    background-color: orange;
+    margin-top: 20px;
+    padding: 20px;
+    max-width: 250px;
+    margin: 0px auto;
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+
+  }
+
+  .btn button {
+    padding: 10px;
+    background-color: black;
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+
+  }
+
+  .btn button:hover {
+    background-color: rgb(88, 186, 247);
+    color: rgb(255, 255, 255);
+  }
+
+
+  @media (max-width: 480px) {
+    .contenor {
+      margin-top: 50px;
+    }
+
+    span {
+      padding: 10px;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .soinpo {
+      margin-top: 20px;
+    }
+
+  }
+
+  #btnBack {
+    background-color: rgb(250, 213, 26);
+    padding: 4px;
+    color: black;
+    font-size: 10px;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 0px;
+    margin-left: 10px;
+  }
+
+  .mayaccount {
+    display: none;
+  }
+</style>
+
+<body>
+  <div class="contenor">
+    <div class="heding">
+      <h1>SBI ATM</h1>
+    </div>
+    <div class="massage">
+      <marquee behavior="scroll" direction="left" scrollamount="3">SBI ATM Start Time: 9:00 AM and Close Time: 11:59 PM
+      </marquee>
+      <button id="btnBack" class="mayaccount">Back</button>
+
+      <div class="sp mayaccount">
+        <span id="check">Check Amount</span>
+        <span id="account">Account</span>
+        <span id="withdraw">Withdrawal</span>
+        <span id="Exit">Exit</span>
+      </div>
+
+      <p id="output"></p>
+      <button class="soinpo">SBI ATM</button>
+      <input type="password" name="pin" id="pin" maxlength="4" class="mayaccount" placeholder="Enter PIN">
+      <input type="number" name="Uaomunt" id="Uaomunt" class="mayaccount" placeholder="Enter Amount">
+      <button id="btnWD" class="mayaccount">Withdrawal</button>
+    </div>
+
+    <div class="btn mayaccount">
+      <button onclick="addValue('1')">1</button>
+      <button onclick="addValue('2')">2</button>
+      <button onclick="addValue('3')">3</button>
+      <button onclick="addValue('4')">4</button>
+      <button onclick="addValue('5')">5</button>
+      <button onclick="addValue('6')">6</button>
+      <button onclick="addValue('7')">7</button>
+      <button onclick="addValue('8')">8</button>
+      <button onclick="addValue('9')">9</button>
+      <button onclick="addValue('0')">0</button>
+      <button style="color: red;" onclick="resetOutput()">X</button>
+      <button style="color: green;" id="enter" onclick="Enter()">Enter</button>
+    </div>
+  </div>
+</body>
+<script>
+  let btnBack = document.getElementById("btnBack");
+  let cheak = document.querySelector("#check");
+  let account = document.querySelector("#account");
+  let Withdraw = document.querySelector("#withdraw");
+  let btnWD = document.querySelector("#btnWD");
+  let Allspn = document.querySelectorAll(".sp");
+  let aoutput = document.getElementById("output");
+  let inpopin = document.querySelector("#pin");  // Input DOM element
+  let btn = document.querySelector(".soinpo");
+  let Allbtns = document.querySelector(".btn");
+  let Uaomunt = document.querySelector("#Uaomunt");
+  let Exit = document.querySelector("#Exit");
+
+  let attempts = 0;     // Galat PIN count
+  let blocked = false;  // Block status
+
+
+  btn.addEventListener('click', () => {
+    btn.classList.add('mayaccount');
+    inpopin.classList.remove('mayaccount');
+    Allbtns.classList.remove('mayaccount')
+  })
+
+  function addValue(val) {
+    inpopin.value += val;
+  }
+
+
+
+  function Enter() {
+    if (blocked) return; // Agar blocked hai, kuch mat karo
+
+    let userPin = Number(inpopin.value);
+    let correctPin = 1234;
+
+    if (userPin === correctPin) {
+      inpopin.classList.add('mayaccount');
+      Allspn.forEach(span => span.classList.remove('mayaccount'));
+      aoutput.classList.add('mayaccount');
+      attempts = 0;
+      setTimeout(() => {
+        blocked = false;
+        attempts = 0;
+        aoutput.textContent = "You can try again now.";
+
+        location.reload();
+      }, 100000);
+    } else {
+      attempts++;
+      if (attempts < 3) {
+        aoutput.textContent = `Incorrect PIN! You have ${3 - attempts} attempt(s) left.`;
+        inpopin.value = "";
+      } else {
+        aoutput.textContent = "You entered wrong PIN 3 times! Blocked for 1 minute.";
+        inpopin.value = "";
+        blocked = true;
+        inpopin.classList.add('mayaccount');
+
+
+        setTimeout(() => {
+          blocked = false;
+          attempts = 0;
+          aoutput.textContent = "You can try again now.";
+
+          location.reload();
+        }, 100000);
+      }
+    }
+  }
+
+
+  function resetOutput() {
+    if (inpopin.value.length > 0) {
+      inpopin.value = inpopin.value.slice(0, -1);
+    }
+  }
+
+
+  let CA = {
+    CurrentAmount: 50000.75,
+    Interest: 100,
+    TotalAmount: 50000.75 + 100, // CurrentAmount + Interest
+    LastTransaction: "Deposit ₹2000 on 20-Aug-2025"
+  };
+
+
+  cheak.addEventListener('click', () => {
+    Allspn.forEach(span => span.classList.add('mayaccount'));
+    aoutput.classList.remove('mayaccount');
+    btnBack.classList.remove('mayaccount')
+
+    for (let key1 in CA) {
+      aoutput.textContent += key1 + ": " + CA[key1] + "\n";
+
+    }
+    setTimeout(() => {
+      blocked = false;
+      attempts = 0;
+
+      inpopin.classList.add('mayaccount');
+      btn.classList.add('mayaccount');
+      btnBack.classList.add('mayaccount');
+      Allbtns.classList.add('mayaccount');
+      aoutput.classList.add('mayaccount');
+      Allspn.forEach(span => span.classList.remove('mayaccount'));
+    }, 30000);
+  });
+
+  let CAmount = {
+    name: "Nitesh Amule",
+    accountNumber: "123456789012",
+    ifscCode: "SBIN0001234",
+    branch: "SBI Katangi",
+    atmNumber: "4321 5678 9876 1234",
+    atmValidity: "12/28",
+    atmPin: 1234,
+    mobile: "+91-9876543210",
+    email: "nitesh22@gmail.com",
+    aadhaar: "1234 5678 9012",
+    pan: "ABCDE1234F",
+    LastTransaction: "Deposit ₹2000 on 20-Aug-2025",
+    accountType: "Savings",
+    status: "Active"
+
+  }
+  account.addEventListener('click', () => {
+    Allspn.forEach(span => span.classList.add('mayaccount'));
+    aoutput.classList.remove('mayaccount');
+    btnBack.classList.remove('mayaccount')
+
+    for (let key2 in CAmount) {
+      aoutput.textContent += key2 + ": " + CAmount[key2] + "\n";
+
+    }
+    setTimeout(() => {
+      blocked = false;
+      attempts = 0;
+
+      inpopin.classList.add('mayaccount');
+      btn.classList.add('mayaccount');
+      Allbtns.classList.add('mayaccount');
+      btnBack.classList.add('mayaccount');
+      Allspn.forEach(span => span.classList.remove('mayaccount'));
+      aoutput.classList.add('mayaccount');
+
+    }, 30000);
+  })
+
+
+  Withdraw.addEventListener('click', () => {
+    Allspn.forEach(span => span.classList.add('mayaccount'));
+    aoutput.classList.add('mayaccount');
+    Uaomunt.classList.remove('mayaccount');
+    btnWD.classList.remove('mayaccount')
+    Allbtns.classList.add('mayaccount');
+
+    setTimeout(() => {
+      blocked = false;
+      attempts = 0;
+      Uaomunt.classList.add('mayaccount');
+      btnWD.classList.add('mayaccount');
+      Allspn.forEach(span => span.classList.remove('mayaccount'));
+    }, 30000);
+
+  })
+
+  btnWD.addEventListener('click', () => {
+    // Input value ko number me convert karo
+    let wdValue = parseFloat(Uaomunt.value);
+
+    // Agar number valid hai
+    if (!isNaN(wdValue) && wdValue > 0) {
+      let availableBalance = CA.CurrentAmount + CA.Interest;
+
+      if (wdValue <= availableBalance) {
+        // Amount minus karo
+        CA.CurrentAmount -= wdValue;
+
+        // TotalAmount update karo
+        CA.TotalAmount = CA.CurrentAmount + CA.Interest;
+
+        // Last Transaction update karo
+        CA.LastTransaction = `Withdraw ₹${wdValue} on ${new Date().toLocaleDateString()}`;
+
+        aoutput.textContent = "";
+        for (let key1 in CA) {
+          aoutput.textContent += key1 + ": " + CA[key1] + "\n";
+        }
+      } else {
+        aoutput.textContent = "Aapke account me itne rupay nahi hain!";
+      }
+    } else {
+      aoutput.textContent = " Please enter a valid amount!";
+    }
+
+    // Input aur button hide kar do
+    btnWD.classList.add('mayaccount');
+    Uaomunt.classList.add('mayaccount');
+    aoutput.classList.remove('mayaccount');
+    btnBack.classList.remove('mayaccount')
+
+
+
+    // Reset karne ke liye timer
+    setTimeout(() => {
+      blocked = false;
+      attempts = 0;
+      aoutput.classList.add('mayaccount');
+      inpopin.classList.add('mayaccount');
+      btn.classList.add('mayaccount');
+      Allbtns.classList.add('mayaccount');
+      Allspn.forEach(span => span.classList.remove('mayaccount'));
+    }, 3);
+  });
+
+
+  Exit.addEventListener('click', () => {
+    location.reload();
+  })
+
+
+  Withdraw.addEventListener('click', () => {
+    Allspn.forEach(span => span.classList.add('mayaccount'));
+    aoutput.classList.add('mayaccount');
+    Uaomunt.classList.remove('mayaccount');
+    btnWD.classList.remove('mayaccount');
+    btnBack.classList.remove('mayaccount'); // Back button show hoga
+  });
+
+  // Back button ka action
+  btnBack.addEventListener('click', () => {
+    Uaomunt.classList.add('mayaccount');
+    btnWD.classList.add('mayaccount');
+    btnBack.classList.add('mayaccount'); // Back button hide hoga
+    Allspn.forEach(span => span.classList.remove('mayaccount'));
+    aoutput.classList.add('mayaccount');
+  });
+</script>
+
+</html>

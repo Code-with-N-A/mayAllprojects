@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MCQZ Questions JavaScript</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: sans-serif;
+      background: #ffffff;
+    }
+
+
+    .contenar {
+      margin: 0 auto;
+      max-width: 800px;
+      box-shadow: 0px 4px 4px 4px rgb(218, 217, 217);
+      padding: 10px;
+      margin-top: 10px;
+      background: #ffffff;
+      border-radius: 10px;
+    }
+
+    .heding {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .heding h3 {
+      background-color: yellow;
+      padding: 8px 12px;
+      display: inline-block;
+      border-radius: 5px;
+    }
+
+
+    .lin {
+      border: 2px solid black;
+      margin: 15px 0;
+    }
+
+
+    .scor {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 20px;
+      margin-top: 10px;
+      border: 0.5px solid black;
+      gap: 15px;
+    }
+
+    .scor .A1,
+    .scor .A2,
+    .scor .A3 {
+      flex: 1;
+      min-width: 120px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      color: #fff;
+      text-align: center;
+    }
+
+    .A1 {
+      background-color: rgb(26, 247, 26);
+    }
+
+    .A2 {
+      background-color: rgb(247, 26, 26);
+    }
+
+    .A3 {
+      background-color: rgb(234, 50, 200);
+    }
+
+
+    .qcon {
+      margin-top: 20px;
+    }
+    
+
+    .qcon .mcqz1 {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background: #fafafa;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      margin-top: 10px;
+    }
+
+    .option:hover {
+      background: #f0f0f0;
+    }
+
+    @media (max-width: 1080px) {
+      .contenar {
+        max-width: 90%;
+        padding: 15px;
+      }
+
+      .scor {
+        gap: 10px;
+        padding: 15px;
+      }
+
+      .scor .A1,
+      .scor .A2,
+      .scor .A3 {
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
+
+
+
+    @media (max-width: 768) {
+
+      .scor {
+
+        align-items: stretch;
+      }
+
+      .scor .A1,
+      .scor .A2,
+      .scor .A3 {
+
+        font-size: 16px;
+      }
+
+      .option {
+        font-size: 16px;
+        padding: 10px;
+      }
+    }
+
+
+
+    @media (max-width: 480px) {
+      .heding h1 {
+        font-size: 20px;
+        margin-bottom: 5px;
+      }
+
+      .heding h3 {
+        font-size: 12px;
+
+      }
+
+      .lin {
+        margin: 0px;
+      }
+
+      .scor {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .scor .A1,
+      .scor .A2,
+      .scor .A3 {
+        font-size: 14px;
+        padding: 10px;
+        flex: 1;
+        text-align: center;
+      }
+
+      .option {
+        font-size: 15px;
+        margin-top: 20px;
+        margin-bottom: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="contenar">
+    <div class="heding">
+      <h1>MCQZ Questions</h1>
+      <h3>Read this question and choose a correct answer</h3>
+    </div>
+    <div class="lin"></div><br>
+    <div class="timer">Time Left: 1:00</div>
+    <div class="mcqz1">
+      <div class="qcon">
+        <h2 class="question">Question will appear here...</h2>
+      </div>
+      <div class="options"></div>
+    </div>
+    <div class="scor">
+      <div class="A1">
+        <legend>Right Answer</legend>
+        <h3 class="rightA">0</h3>
+      </div>
+      <div class="A2">
+        <label>Wrong Answer</label>
+        <h3 class="rongA">0</h3>
+      </div>
+      <div class="A3">
+        <label>Time Out</label>
+        <h3 class="timeOutA">0</h3>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const questions = [
+      {
+        q: "1. What type of language is JavaScript?",
+        options: ["Programming Language", "Markup Language", "Styling Language", "Database Language"],
+        correct: 0
+      },
+      {
+        q: "2. What was the original name of JavaScript?",
+        options: ["Mocha", "LiveScript", "CoffeeScript", "ECMAScript"],
+        correct: 0
+      },
+      {
+        q: "3. Which company developed JavaScript?",
+        options: ["Microsoft", "Netscape", "Google", "Apple"],
+        correct: 1
+      },
+      {
+        q: "4. JavaScript is a ______ language.",
+        options: ["Compiled", "Interpreted", "Assembly", "Machine"],
+        correct: 1
+      },
+      {
+        q: "5. Which symbol is used for comments in JavaScript?",
+        options: ["//", "<!-- -->", "#", "/* */"],
+        correct: 0
+      },
+      {
+        q: "6. How do you declare a variable in JavaScript (ES6)?",
+        options: ["var", "let", "const", "All of the above"],
+        correct: 3
+      },
+      {
+        q: "7. Which keyword is block-scoped in JavaScript?",
+        options: ["var", "let", "const", "Both let and const"],
+        correct: 3
+      },
+      {
+        q: "8. Which data type is NOT supported in JavaScript?",
+        options: ["Undefined", "Integer", "Boolean", "Object"],
+        correct: 1
+      },
+      {
+        q: "9. Which operator is used for strict equality?",
+        options: ["==", "===", "=", "!="],
+        correct: 1
+      },
+      {
+        q: "10. What is the output of typeof null?",
+        options: ["null", "object", "undefined", "boolean"],
+        correct: 1
+      },
+      {
+        q: "11. Which method is used to parse a string to integer?",
+        options: ["parse()", "parseInt()", "Number()", "toInt()"],
+        correct: 1
+      },
+      {
+        q: "12. Which method is used to convert JSON string to object?",
+        options: ["JSON.parse()", "JSON.stringify()", "JSON.convert()", "JSON.toObject()"],
+        correct: 0
+      },
+      {
+        q: "13. Which method is used to convert object to JSON string?",
+        options: ["JSON.parse()", "JSON.stringify()", "toJSON()", "Object.toJSON()"],
+        correct: 1
+      },
+      {
+        q: "14. Which of the following is a JavaScript framework?",
+        options: ["React", "Laravel", "Django", "Spring"],
+        correct: 0
+      },
+      {
+        q: "15. In JavaScript, arrays are ______.",
+        options: ["Primitive types", "Objects", "Strings", "Numbers"],
+        correct: 1
+      },
+      {
+        q: "16. Which function is used to print output to the console?",
+        options: ["print()", "log()", "console.log()", "write()"],
+        correct: 2
+      },
+      {
+        q: "17. Which symbol is used for template literals?",
+        options: ["'", "\"", "`", "~"],
+        correct: 2
+      },
+      {
+        q: "18. Which method adds an element to the end of an array?",
+        options: ["push()", "pop()", "shift()", "unshift()"],
+        correct: 0
+      },
+      {
+        q: "19. Which method removes the last element from an array?",
+        options: ["push()", "pop()", "shift()", "splice()"],
+        correct: 1
+      },
+      {
+        q: "20. Which loop is used to iterate over object properties?",
+        options: ["for", "for of", "for in", "while"],
+        correct: 2
+      },
+      {
+        q: "21. What is the default value of uninitialized variables?",
+        options: ["null", "undefined", "0", "false"],
+        correct: 1
+      },
+      {
+        q: "22. Which function is used to delay execution in JavaScript?",
+        options: ["setInterval()", "setTimeout()", "delay()", "sleep()"],
+        correct: 1
+      },
+      {
+        q: "23. Which function repeatedly executes code at intervals?",
+        options: ["setInterval()", "setTimeout()", "repeat()", "loop()"],
+        correct: 0
+      },
+      {
+        q: "24. What is NaN in JavaScript?",
+        options: ["Not a Number", "Negative and Null", "Number as Null", "None"],
+        correct: 0
+      },
+      {
+        q: "25. What is the output of 2 + '2'?",
+        options: ["22", "4", "NaN", "Error"],
+        correct: 0
+      },
+      {
+        q: "26. What is the output of 2 - '2'?",
+        options: ["22", "0", "NaN", "Error"],
+        correct: 1
+      },
+      {
+        q: "27. Which scope is used inside functions?",
+        options: ["Global", "Local", "Block", "Static"],
+        correct: 1
+      },
+      {
+        q: "28. Which method is used to join array elements into a string?",
+        options: ["concat()", "join()", "toString()", "combine()"],
+        correct: 1
+      },
+      {
+        q: "29. Which keyword is used to define a function?",
+        options: ["def", "function", "func", "lambda"],
+        correct: 1
+      },
+      {
+        q: "30. What is an arrow function in JavaScript?",
+        options: ["A new function syntax", "A loop", "A variable type", "An operator"],
+        correct: 0
+      },
+      {
+        q: "31. Which operator is used to spread elements in an array?",
+        options: ["...", "===", "=>", "++"],
+        correct: 0
+      },
+      {
+        q: "32. Which object represents the current webpage in browser?",
+        options: ["window", "document", "navigator", "screen"],
+        correct: 1
+      },
+      {
+        q: "33. Which event occurs when a user clicks an element?",
+        options: ["onhover", "onclick", "onpress", "onenter"],
+        correct: 1
+      },
+      {
+        q: "34. Which event occurs when a key is pressed?",
+        options: ["onpress", "onkeydown", "onkeyup", "onchange"],
+        correct: 1
+      },
+      {
+        q: "35. Which function is used to check array type?",
+        options: ["isArray()", "Array.isArray()", "typeof array", "checkArray()"],
+        correct: 1
+      },
+      {
+        q: "36. Which symbol is used for optional chaining?",
+        options: ["??", "?.", "::", "=>"],
+        correct: 1
+      },
+      {
+        q: "37. What does 'this' keyword refer to in a function?",
+        options: ["Global object", "Current object", "Window only", "Undefined"],
+        correct: 1
+      },
+      {
+        q: "38. In arrow functions, 'this' refers to?",
+        options: ["Own context", "Lexical (parent) context", "Window only", "Null"],
+        correct: 1
+      },
+      {
+        q: "39. Which operator is used for nullish coalescing?",
+        options: ["??", "?.", "||", "&&"],
+        correct: 0
+      },
+      {
+        q: "40. Which function converts string to float?",
+        options: ["parseFloat()", "parseInt()", "Number()", "toFloat()"],
+        correct: 0
+      },
+      {
+        q: "41. Which keyword is used to handle errors?",
+        options: ["try-catch", "error", "catch-throw", "debug"],
+        correct: 0
+      },
+      {
+        q: "42. Which method is used to remove whitespace from string ends?",
+        options: ["trim()", "slice()", "replace()", "cut()"],
+        correct: 0
+      },
+      {
+        q: "43. Which array method is used to filter elements?",
+        options: ["map()", "filter()", "reduce()", "sort()"],
+        correct: 1
+      },
+      {
+        q: "44. Which array method is used to transform elements?",
+        options: ["map()", "filter()", "reduce()", "concat()"],
+        correct: 0
+      },
+      {
+        q: "45. Which array method is used to sum all elements?",
+        options: ["map()", "filter()", "reduce()", "concat()"],
+        correct: 2
+      },
+      {
+        q: "46. Which operator is used for exponentiation?",
+        options: ["^", "**", "pow", "exp"],
+        correct: 1
+      },
+      {
+        q: "47. What will be the output of Boolean('')?",
+        options: ["true", "false", "undefined", "null"],
+        correct: 1
+      },
+      {
+        q: "48. Which function is used to merge arrays?",
+        options: ["merge()", "concat()", "combine()", "append()"],
+        correct: 1
+      },
+      {
+        q: "49. What is the output of typeof NaN?",
+        options: ["NaN", "undefined", "object", "number"],
+        correct: 3
+      },
+      {
+        q: "50. Which keyword stops the execution of a loop?",
+        options: ["exit", "stop", "break", "return"],
+        correct: 2
+      }
+    ];
+
+
+    let currentQ = 0;
+    let right = 0, wrong = 0, timeout = 0;
+    let timer;
+
+    const questionEl = document.querySelector(".question");
+    const optionsEl = document.querySelector(".options");
+    const rightEl = document.querySelector(".rightA");
+    const wrongEl = document.querySelector(".rongA");
+    const timeOutEl = document.querySelector(".timeOutA");
+
+    let countdown;
+    let timeLeft = 60;
+
+    function startTimer() {
+      clearInterval(countdown);
+      timeLeft = 60;
+
+      const timerDisplay = document.querySelector(".timer");
+
+      countdown = setInterval(() => {
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+
+        timerDisplay.textContent = `Time Left: ${minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
+
+        timeLeft--;
+
+        if (timeLeft < 0) {
+          clearInterval(countdown);
+          timeout++;
+          timeOutEl.innerHTML = timeout;
+          next();
+        }
+      }, 1000);
+    }
+
+
+    function lod() {
+      if (currentQ >= questions.length) {
+        questionEl.innerText = "Quiz Finished!";
+        optionsEl.innerHTML = "<h1>Your Score: " + right + "/" + questions.length + "</h1>";
+
+        clearInterval(countdown);
+        document.querySelector(".timer").textContent = "";
+        return;
+      }
+      let a = questions[currentQ];
+      questionEl.innerText = a.q;
+      optionsEl.innerHTML = "";
+
+      a.options.forEach((valu, i) => {
+        let div = document.createElement("div");
+        div.className = "option";
+        div.innerHTML = `<input type="radio" name="opt" id="opt${i}">
+                   <label for="opt${i}">${valu}</label>`;
+
+        optionsEl.appendChild(div);
+        div.querySelector("input").addEventListener("change", () => checkAnswer(i));
+
+        startTimer();
+      })
+
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        timeout++;
+        timeOutEl.innerHTML = timeout;
+        next();
+      }, 100000)
+    }
+
+    function checkAnswer(selected) {
+      clearTimeout(timer);
+      let o = questions[currentQ];
+      if (selected === o.correct) {
+        right++;
+        rightEl.innerHTML = right;
+      } else {
+        wrong++;
+        wrongEl.innerHTML = wrong;
+      }
+
+      setTimeout(() => {
+        next();
+      }, 1000);
+
+    }
+
+    function next() {
+      currentQ++;
+      lod();
+    }
+    lod()
+
+  </script>
+</body>
+
+</html>
