@@ -23,7 +23,6 @@
       max-width: 800px;
       box-shadow: 0px 4px 4px 4px rgb(218, 217, 217);
       padding: 10px;
-      margin-top: 10px;
       background: #ffffff;
       border-radius: 10px;
     }
@@ -43,7 +42,7 @@
 
     .lin {
       border: 2px solid black;
-      margin: 15px 0;
+
     }
 
 
@@ -55,6 +54,8 @@
       margin-top: 10px;
       border: 0.5px solid black;
       gap: 15px;
+      animation: fadeIn 0.8s ease-in-out;
+
     }
 
     .scor .A1,
@@ -89,14 +90,19 @@
 
     .qcon {
       margin-top: 20px;
+      animation: fadeIn 0.8s ease-in-out;
+
     }
-    
+
 
     .qcon .mcqz1 {
       display: flex;
       flex-direction: column;
       gap: 20px;
       padding: 40px;
+      animation: fadeIn 0.8s ease-in-out;
+
+
     }
 
     .option {
@@ -110,6 +116,8 @@
       cursor: pointer;
       transition: all 0.2s ease-in-out;
       margin-top: 10px;
+      animation: fadeIn 0.8s ease-in-out;
+
     }
 
     .option:hover {
@@ -160,6 +168,11 @@
 
 
     @media (max-width: 480px) {
+
+      .contenar {
+        margin-top: 10px;
+      }
+
       .heding h1 {
         font-size: 20px;
         margin-bottom: 5px;
@@ -193,13 +206,148 @@
         font-size: 15px;
         margin-top: 20px;
         margin-bottom: 15px;
+        cursor: pointer;
+
+      }
+
+
+    }
+
+    .option.correct {
+      background-color: lightgreen;
+    }
+
+    .option.wrong {
+      background-color: lightcoral;
+    }
+
+    .next-btn {
+      background-color: rgb(102, 102, 241);
+      font-size: 20px;
+      font-weight: bold;
+      padding: 7px;
+      border: none;
+      border-radius: 7px;
+      margin-top: 10px;
+      color: #fff;
+      cursor: pointer;
+
+    }
+
+    .next-btn:hover {
+      background-color: rgb(26, 26, 173);
+    }
+
+    .nandip {
+      display: none;
+    }
+
+    .frist {
+      margin: 0px auto;
+      max-width: 800px;
+      margin-top: 50px;
+
+    }
+
+    .star {
+
+      background-color: rgb(110, 118, 238);
+      color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      animation: fadeIn 0.8s ease-in-out;
+      margin: 20px;
+
+    }
+
+    .hed h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+
+    .desc {
+      margin-top: 20px;
+    }
+
+    .rules {
+      padding: 10px;
+      font-weight: bold;
+      line-height: 1.8;
+    }
+
+    .star button {
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: #ffe604;
+      font-size: 25px;
+      font-weight: bold;
+      border: none;
+      padding: 7px;
+      border-radius: 7px;
+      color: #000000;
+      margin: 0px auto;
+      width: 100%;
+      margin-top: 30px;
+    }
+
+    .star button:hover {
+      background-color: #fafafa;
+    }
+
+
+
+    /* Animation */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="contenar">
+  <div class="frist">
+    <div class="star">
+      <div class="hed">
+        <!-- Heading -->
+        <h1>Start to JavaScript MCQZ</h1>
+
+        <!-- Description -->
+        <p class="desc">
+          Welcome to the <b>JavaScript MCQs Quiz</b> <br>
+          This quiz is designed to test and improve your knowledge of <b>JavaScript</b> concepts
+          such as variables, functions, loops, arrays, objects, and DOM manipulation.
+          Read the instructions carefully before starting.
+        </p>
+
+        <!-- Important Points -->
+        <ul class="rules">
+          <li>Each question has <b>4 options</b>.</li>
+          <li><b>60 sec</b> for each question.</li>
+          <li>Once chosen, <b>can’t change</b>.</li>
+          <li>Correct = <span style="color:rgb(159, 233, 127);">green</span>.</li>
+          <li>Wrong = <span style="color:red;">red</span>, correct shown.</li>
+          <li>End shows your <b>score</b> (Right/Wrong/Timeout).</li>
+          <li>Don’t refresh during quiz.</li>
+        </ul>
+
+        <div class="bt">
+          <!-- Start Button -->
+          <button id="sbtn">Start Quiz</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contenar nandip">
     <div class="heding">
       <h1>MCQZ Questions</h1>
       <h3>Read this question and choose a correct answer</h3>
@@ -226,10 +374,20 @@
         <h3 class="timeOutA">0</h3>
       </div>
     </div>
-
   </div>
 
   <script>
+    // start btn code 
+    let start = document.querySelector('.star');
+    let contenar = document.querySelector('.contenar');
+    let sbtn = document.querySelector('#sbtn');
+    sbtn.addEventListener('click', () => {
+      start.classList.add('nandip');
+      contenar.classList.remove('nandip');
+      startTimer();
+      currentQ = 0;
+      lod();
+    })
     const questions = [
       {
         q: "1. What type of language is JavaScript?",
@@ -483,7 +641,6 @@
       }
     ];
 
-
     let currentQ = 0;
     let right = 0, wrong = 0, timeout = 0;
     let timer;
@@ -543,8 +700,18 @@
         optionsEl.appendChild(div);
         div.querySelector("input").addEventListener("change", () => checkAnswer(i));
 
+
+
         startTimer();
       })
+      let btn = document.createElement("button");
+      btn.textContent = "Next Question";
+      btn.className = "next-btn";
+      btn.addEventListener("click", () => {
+        next();
+      });
+      optionsEl.appendChild(btn);
+
 
       clearTimeout(timer);
       timer = setTimeout(() => {
@@ -555,21 +722,35 @@
     }
 
     function checkAnswer(selected) {
-      clearTimeout(timer);
+      clearInterval(countdown);
       let o = questions[currentQ];
+
+
+      const allOptions = document.querySelectorAll(".option");
+      const allInputs = document.querySelectorAll(".option input");
+
+      allInputs.forEach(input => {
+        input.disabled = true;
+      });
+
       if (selected === o.correct) {
         right++;
         rightEl.innerHTML = right;
+        setTimeout(() => {
+          allOptions[selected].classList.add("correct");
+        }, 1000)
       } else {
         wrong++;
         wrongEl.innerHTML = wrong;
+        allOptions[selected].classList.add("wrong");
+        setTimeout(() => {
+          allOptions[o.correct].classList.add("correct");
+        }, 1000)
       }
 
-      setTimeout(() => {
-        next();
-      }, 1000);
-
     }
+
+
 
     function next() {
       currentQ++;
